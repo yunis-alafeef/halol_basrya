@@ -1,0 +1,9 @@
+import { NextRequest, NextResponse } from "next/server";
+import { db } from "@/lib/db";
+import { authorize } from "@/lib/admin-api";
+import { postSchema, projectSchema, serviceSchema } from "@/lib/validation";
+export const dynamic = "force-dynamic";
+const collections = { services: { delegate: db.service, schema: serviceSchema }, projects: { delegate: db.project, schema: projectSchema }, posts: { delegate: db.post, schema: postSchema } } as const;
+type Collection = keyof typeof collections;
+export async function GET(_request: NextRequest, context: { params: Promise<{ collection: string }> }) { const auth = await authorize(); if (auth.response) return auth.response; const { collection } = await context.params; if (!(collection in collections)) return NextResponse.json({ error: "القسم غير موجود." }, { status: 404 }); const data = await (collections[collection as Collection].delegate as any).findMany({ orderBy: { createdAt: "desc" } }); return NextResponse.json({ data }); }
+export async function POST(request: NextRequest, context: { params: Promise<{ collection: string }> }) { const auth = await authorize(); if (auth.response) return auth.response; const { collection } = await context.params; if (!(collection in collections)) return NextResponse.json({ error: "القسم غير موجود." }, { status: 404 }); const config = collections[collection as Collection]; try { const body = await request.json(); const data = config.schema.parse(body); if (collection === "posts" && (data as any).published && !(data as any).publishedAt) (data as any).publishedAt = new Date(); const created = await (config.delegate as any).create({ data }); return NextResponse.json({ data: created }, { status: 201 }); } catch (error) { if (error && typeof error === "object" && "issues" in error) return NextResponse.json({ error: "راجع الحقول المطلوبة." }, { status: 400 }); return NextResponse.json({ error: "تعذر إنشاء العنصر. تأكد من عدم تكرار الرابط المختصر." }, { status: 409 }); } }
