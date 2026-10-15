@@ -1,0 +1,9 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowLeft, Award, BadgeCheck, Gift, Layers3, Printer, Stamp, Trophy } from "lucide-react";
+import { getServices } from "@/lib/content";
+import { CoverImage } from "@/components/cover-image";
+export const dynamic = "force-dynamic";
+export const metadata: Metadata = { title: "خدماتنا" };
+const icons = [Layers3, Printer, Trophy, Gift, Stamp, BadgeCheck, Award];
+export default async function ServicesPage() { const services = await getServices(); return <><section className="page-hero"><div className="container"><span className="eyebrow">خدماتنا</span><h1>حلول متكاملة،<br/><em>تفاصيل تصنع الفرق.</em></h1><p>من لوحة واجهتك إلى هديتك الدعائية — نصمم وننتج كل ما يجعل علامتك أقرب إلى الناس.</p></div></section><section className="section section-white"><div className="container"><div className="service-grid service-grid-large">{services.map((service, index) => { const Icon = icons[index % icons.length]; return <article className="service-card service-card-expanded" key={service.id}><div className="service-card-image"><CoverImage src={service.imageUrl} alt={service.title}/></div><span className="icon-box"><Icon size={22}/></span><span className="card-number">0{index + 1}</span><h2>{service.title}</h2><p>{service.description}</p><Link className="text-link" href="/contact">اطلب هذه الخدمة <ArrowLeft size={15}/></Link></article>; })}</div></div></section><section className="cta-band"><div className="container cta-content"><div><span className="eyebrow eyebrow-gold">لم تجد ما تبحث عنه؟</span><h2>لدينا حلول<br/><em>تُصمم لك.</em></h2></div><Link href="/contact" className="button button-gold">صف لنا فكرتك <ArrowLeft size={17}/></Link></div></section></>; }
