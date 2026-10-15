@@ -1,0 +1,6 @@
+import "dotenv/config";
+import bcrypt from "bcryptjs";
+import { PrismaClient } from "@prisma/client";
+const db = new PrismaClient();
+async function main() { const username = process.env.ADMIN_USERNAME; const password = process.env.ADMIN_PASSWORD; if (!username || !password) throw new Error("Set ADMIN_USERNAME and ADMIN_PASSWORD in your private environment first."); if (password.length < 12) throw new Error("ADMIN_PASSWORD must be at least 12 characters."); if (!/^[a-zA-Z0-9._-]{3,40}$/.test(username)) throw new Error("ADMIN_USERNAME must be 3–40 letters, numbers, dots, underscores, or hyphens."); const existing = await db.user.findUnique({ where: { username } }); if (existing) throw new Error("That username already exists; use the admin dashboard to manage existing users."); const passwordHash = await bcrypt.hash(password, 12); await db.user.create({ data: { username, name: "مدير الموقع", passwordHash, role: "admin" } }); console.log("Initial admin account created. Keep the credentials in your secret manager."); }
+main().catch((error) => { console.error(error instanceof Error ? error.message : "Admin creation failed."); process.exitCode = 1; }).finally(() => db.$disconnect());
