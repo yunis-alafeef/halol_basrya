@@ -1,0 +1,5 @@
+import { z } from "zod";
+const base = { title: z.string().trim().min(2).max(140), slug: z.string().trim().min(2).max(160).regex(/^[a-z0-9-]+$/), imageUrl: z.string().trim().max(1500).default("") };
+export const serviceSchema = z.object({ ...base, description: z.string().trim().min(8).max(4000), featured: z.boolean().default(false), sortOrder: z.coerce.number().int().min(0).max(9999).default(0) });
+export const projectSchema = z.object({ ...base, category: z.string().trim().max(100).default(""), description: z.string().trim().min(8).max(4000), featured: z.boolean().default(false) });
+export const postSchema = z.object({ ...base, excerpt: z.string().trim().min(8).max(500), content: z.string().trim().min(20).max(30000), published: z.boolean().default(false), publishedAt: z.coerce.date().nullable().optional() });
