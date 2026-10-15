@@ -1,0 +1,6 @@
+import type { Metadata } from "next";
+import { getProjects } from "@/lib/content";
+import { CoverImage } from "@/components/cover-image";
+export const dynamic = "force-dynamic";
+export const metadata: Metadata = { title: "أعمالنا" };
+export default async function PortfolioPage() { const projects = await getProjects(); return <><section className="page-hero"><div className="container"><span className="eyebrow">أعمالنا</span><h1>أفكارٌ خرجت<br/><em>إلى النور.</em></h1><p>نماذج مختارة من حلول بصرية متنوعة. أضف مشاريعك الحقيقية من لوحة الإدارة لتظهر هنا.</p></div></section><section className="section section-tint"><div className="container"><div className="portfolio-grid portfolio-grid-page">{projects.map(project => <article className="project-card" key={project.id}><CoverImage src={project.imageUrl} alt={project.title}/><div className="project-overlay"><span>{project.category}</span><h2>{project.title}</h2><p>{project.description}</p></div></article>)}</div>{projects.length === 0 && <div className="empty-state"><h2>قريبًا: أعمال جديدة</h2><p>ستجد هنا المشاريع التي ننفذها لعملائنا.</p></div>}</div></section></>; }
