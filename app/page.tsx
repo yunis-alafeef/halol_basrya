@@ -1,11 +1,397 @@
 import Link from "next/link";
-import { ArrowLeft, Award, BadgeCheck, Layers3, Printer, Sparkles, Trophy } from "lucide-react";
+import {
+  ArrowLeft,
+  Award,
+  BadgeCheck,
+  CheckCircle2,
+  Clock,
+  Layers3,
+  MessageCircle,
+  Printer,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Trophy,
+  Zap
+} from "lucide-react";
 import { CoverImage } from "@/components/cover-image";
+import { FastQuoteEstimator } from "@/components/fast-quote-estimator";
 import { getPosts, getProjects, getServices, formatDate } from "@/lib/content";
+import { getSiteSettings } from "@/lib/settings";
+
 export const dynamic = "force-dynamic";
+
 const icons = [Layers3, Printer, Trophy, Sparkles, BadgeCheck, Award];
+
+const clientReviews = [
+  {
+    name: "م. فهد السبيعي",
+    company: "مجموعة السبيعي القابضة — الرياض",
+    rating: 5,
+    text: "نفذوا لنا واجهة الكلادينج والحروف البارزة لفرعنا الرئيسي في الرياض، الدقة في التركيب وجودة الإنارة الكورية تفوقت على توقعاتنا، والتسليم كان قبل الموعد المحدد."
+  },
+  {
+    name: "أ. ريم الشمري",
+    company: "سلسلة كافيهات أروما",
+    rating: 5,
+    text: "تعامل راقٍ وشفافية في الأسعار. أعدوا لنا محاكاة 3D للوحة قبل التصنيع، وكان الشكل النهائي مطابقًا تمامًا بنسبة 100%. الضمان والمتابعة بعد التركيب ممتازة."
+  },
+  {
+    name: "م. خالد باوزير",
+    company: "شركة الأفق للمعارض والمؤتمرات",
+    rating: 5,
+    text: "أنقذوا مشاركتنا في معرض الرياض الدولي بتجهيز جناح المعرض والاستندات المطبوعة خلال 48 ساعة فقط بخامات فاخرة وتشطيب احترافي."
+  }
+];
+
+const faqs = [
+  {
+    q: "كم تستغرق مدة تصنيع وتركيب اللوحات الإعلانية عادةً؟",
+    a: "تتراوح مدة تصنيع لوحات الحروف البارزة والكلادينج بين 3 إلى 7 أيام عمل بحسب حجم المشروع وتعقيد التفاصيل الهندسية، مع توفير خيار التنفيذ السريع العاجل للمشاريع الطارئة."
+  },
+  {
+    q: "هل تقدمون خدمة المعاينة الميدانية والرفع المساحي مجانًا؟",
+    a: "نعم، نوفر خدمة المعاينة الهندسية ورفع المقاسات وفحص نقاط الكهرباء مجانًا داخل مدينة الرياض، مع تقديم تصميم استرشادي أولي قبل اعتماد العقد."
+  },
+  {
+    q: "ما هي فترة الضمان التي تقدمونها على اللوحات والإنارة؟",
+    a: "نقدم ضمانًا معتمدًا يتراوح بين 3 إلى 5 سنوات يشمل محولات الكهرباء ووحدات LED وثبات الحروف وهيكل التثبيت، مع توفير صيانة دورية سريعة."
+  },
+  {
+    q: "هل تقومون بالتوريد والتركيب خارج مدينة الرياض؟",
+    a: "نعم، فريقنا الهندسي ينفذ مشاريع كبرى في جميع مناطق المملكة العربية السعودية (جدة، مكة، الدمام، القصيم، المدينة، والجنوب) بأسطول تركيب متخصص."
+  }
+];
+
 export default async function HomePage() {
- const [services, projects, posts] = await Promise.all([getServices(), getProjects(), getPosts()]);
- const featured = projects.filter((item) => item.featured).slice(0, 3);
- return <><section className="hero"><div className="container hero-grid"><div className="hero-copy"><span className="eyebrow"><i/> حلول إبداعية من الفكرة حتى التنفيذ</span><h1>حضورك يبدأ<br/><em>من صورة</em> تترك أثرًا.</h1><p>نصمم وننفذ هويتك على أرض الواقع — من اللوحات التي تلفت النظر إلى التفاصيل المطبوعة التي تصنع الفرق.</p><div className="hero-actions"><Link href="/contact" className="button">ابدأ مشروعك <ArrowLeft size={17}/></Link><Link href="/portfolio" className="button button-outline">اكتشف أعمالنا</Link></div><div className="hero-proof"><div><b>من الفكرة</b><span>تصميم مدروس</span></div><div><b>حتى التركيب</b><span>تنفيذ متكامل</span></div><div><b>بجودة تثق بها</b><span>تفاصيل تصنع الفرق</span></div></div></div><div className="hero-visual"><CoverImage src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=85" alt="مساحة عمل عصرية بتصميم بصري أنيق" priority/><div className="hero-stamp"><span>رؤية<br/>تُرى</span><i>✦</i></div><div className="hero-caption"><span>01 / 06</span><b>أفكارك تستحق حضورًا استثنائيًا</b></div></div></div><div className="hero-bottom-line"/></section><section className="section section-white"><div className="container"><div className="section-heading"><div><span className="eyebrow">ما نقدمه</span><h2>كل ما تحتاجه علامتك<br/><em>في مكان واحد.</em></h2></div><p>حلول إعلانية متكاملة تجمع بين الفكرة الذكية والتنفيذ المتقن — لتظهر علامتك كما تستحق.</p></div><div className="service-grid">{services.slice(0, 6).map((service, index) => { const Icon = icons[index % icons.length]; return <Link href="/services" className="service-card" key={service.id}><span className="icon-box"><Icon size={21}/></span><span className="card-number">0{index + 1}</span><h3>{service.title}</h3><p>{service.description}</p><span className="card-arrow"><ArrowLeft size={17}/></span></Link>; })}</div><div className="center-link"><Link href="/services" className="text-link">تعرّف على جميع الخدمات <ArrowLeft size={16}/></Link></div></div></section><section className="section section-navy"><div className="container story-grid"><div className="story-art"><CoverImage src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1100&q=85" alt="تفاصيل تصميم داخلي أنيق لمكتب"/><div className="story-badge"><b>الفكرة</b><span>تتحول إلى واقع</span></div></div><div className="story-copy"><span className="eyebrow eyebrow-gold">من نحن</span><h2>نؤمن أن الصورة<br/>الصحيحة <em>تقول الكثير.</em></h2><p>في حلول بصرية، نمنح العلامات التجارية حضورًا ملموسًا. نرافقك من أول تصور إبداعي حتى آخر تفصيلة في التركيب، مع التزام بالجودة والوقت.</p><Link href="/about" className="text-link text-link-light">اكتشف قصتنا <ArrowLeft size={16}/></Link><div className="story-quote">«نصنع حضورًا بصريًا<br/>يعكس طموحك الحقيقي.»</div></div></div></section><section className="section section-tint"><div className="container"><div className="section-heading"><div><span className="eyebrow">من أعمالنا</span><h2>أفكار تحولت<br/><em>إلى واقع.</em></h2></div><Link href="/portfolio" className="text-link">شاهد كل الأعمال <ArrowLeft size={16}/></Link></div><div className="portfolio-grid">{featured.map((item, index) => <Link href="/portfolio" className={"project-card project-card-" + (index + 1)} key={item.id}><CoverImage src={item.imageUrl} alt={item.title}/><div className="project-overlay"><span>{item.category}</span><h3>{item.title}</h3><span className="project-open"><ArrowLeft size={18}/></span></div></Link>)}</div></div></section><section className="section section-white"><div className="container"><div className="section-heading"><div><span className="eyebrow">أفكار تلهمك</span><h2>من مدونتنا،<br/><em>لك ولمشروعك.</em></h2></div><Link href="/blog" className="text-link">كل المقالات <ArrowLeft size={16}/></Link></div><div className="post-grid">{posts.slice(0, 3).map(post => <Link href={"/blog/" + post.slug} className="post-card" key={post.id}><CoverImage src={post.imageUrl} alt={post.title}/><span className="post-date">{formatDate(post.publishedAt || post.createdAt)}</span><h3>{post.title}</h3><p>{post.excerpt}</p><span className="text-link">اقرأ المقال <ArrowLeft size={15}/></span></Link>)}</div></div></section><section className="cta-band"><div className="container cta-content"><div><span className="eyebrow eyebrow-gold">مشروع جديد؟</span><h2>لديك فكرة؟<br/><em>دعنا نصنعها معًا.</em></h2></div><Link href="/contact" className="button button-gold">تواصل معنا <ArrowLeft size={17}/></Link><span className="cta-spark" aria-hidden="true">✳</span></div></section></>;
+  const [services, projects, posts, settings] = await Promise.all([
+    getServices(),
+    getProjects(),
+    getPosts(),
+    getSiteSettings()
+  ]);
+
+  const featured = projects.filter((item) => item.featured).slice(0, 4);
+  const cleanWhatsapp = (settings.whatsapp || "").replace(/[^0-9]/g, "");
+  const whatsappUrl = `https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent("مرحبًا، أود الاستفسار عن تنفيذ لوحة إعلانية لمشروعي.")}`;
+
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="container hero-grid">
+          <div className="hero-copy">
+            <div className="hero-kicker">
+              <span>{settings.brandName} — صُنّاع الحضور الإعلاني والواجهات الفاخرة</span>
+            </div>
+
+            <h1>
+              حضور علامتك يبدأ<br />
+              من <em>واجهة تصنع الفارق</em><br />
+              وتترك أثرًا راسخًا.
+            </h1>
+
+            <p className="hero-lead">
+              {settings.tagline || "نصمم وننفذ هويتك على أرض الواقع بأحدث ماكينات الليزر وتقنيات الكلادينج والحروف البارزة ثلاثية الأبعاد، من الرفع المساحي وحتى التركيب بالضمان."}
+            </p>
+
+            <div className="hero-actions">
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="button button-gold">
+                <MessageCircle size={18} />
+                <span>طلب معاينة وتسعير فوري</span>
+              </a>
+              <Link href="#quote-calculator" className="button button-outline">
+                <Zap size={16} />
+                <span>احسب التكلفة بضغطة زر</span>
+              </Link>
+            </div>
+
+            <div className="hero-proof-bar">
+              <div className="proof-box">
+                <div className="proof-icon-wrap"><ShieldCheck size={20} className="text-gold" /></div>
+                <div>
+                  <b>ضمان حتى 5 سنوات</b>
+                  <span>محولات وإنارة كورية أصلية</span>
+                </div>
+              </div>
+              <div className="proof-divider" />
+              <div className="proof-box">
+                <div className="proof-icon-wrap"><CheckCircle2 size={20} className="text-gold" /></div>
+                <div>
+                  <b>معاينة مجانية 100%</b>
+                  <span>رفع مساحي وتصميم 3D</span>
+                </div>
+              </div>
+              <div className="proof-divider" />
+              <div className="proof-box">
+                <div className="proof-icon-wrap"><Clock size={20} className="text-gold" /></div>
+                <div>
+                  <b>سرعة في التنفيذ</b>
+                  <span>التزام صارم بمواعيد التسليم</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero-visual">
+            <CoverImage
+              src="/images/hero_commercial_signage.jpg"
+              alt="واجهة تجارية فاخرة بحروف بارزة وإنارة ليد متناسقة"
+              priority
+            />
+            <div className="hero-floating-badge">
+              <Sparkles size={18} className="text-navy" />
+              <div>
+                <b>+500 مشروع منجز</b>
+                <small>بمختلف مدن المملكة</small>
+              </div>
+            </div>
+            <div className="hero-caption">
+              <span>01 / معايير عالمية</span>
+              <b>خامات معتمدة لمقاومة حرارة وشمس الخليج</b>
+            </div>
+          </div>
+        </div>
+        <div className="hero-bottom-line" />
+      </section>
+
+      {/* Services Showcase */}
+      <section className="section section-white" id="services">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <span className="eyebrow"><i /> ما نقدمه لعملائنا</span>
+              <h2>حلول إعلانية متكاملة<br /><em>تحت سقف واحد.</em></h2>
+            </div>
+            <p>من اللوحة المضيئة الخارجية إلى الهدايا التذكارية والمطبوعات الإعلانية، نصنع لعلامتك حضورًا متناسقًا ومؤثرًا.</p>
+          </div>
+
+          <div className="service-grid">
+            {services.slice(0, 6).map((service, index) => {
+              const Icon = icons[index % icons.length];
+              return (
+                <Link href={`/services/${service.slug}`} className="service-card group" key={service.id}>
+                  <div className="service-card-top flex items-center justify-between">
+                    <span className="icon-box"><Icon size={21} /></span>
+                    <span className="card-number">0{index + 1}</span>
+                  </div>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                  <span className="text-link mt-4 inline-flex items-center gap-1 text-gold group-hover:text-navy transition-colors">
+                    تفاصيل الخدمة والمواصفات <ArrowLeft size={15} />
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="center-link">
+            <Link href="/services" className="button button-outline">
+              استكشف كافة الخدمات والمواصفات التقنية <ArrowLeft size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Fast Quote Estimator Section */}
+      <section className="section section-tint">
+        <div className="container">
+          <FastQuoteEstimator settings={settings} />
+        </div>
+      </section>
+
+      {/* Manufacturing & Craftsmanship (Dark Luxury Section) */}
+      <section className="section section-navy">
+        <div className="container story-grid">
+          <div className="story-art">
+            <CoverImage
+              src="/images/signage_cladding_workshop.jpg"
+              alt="مصنع تصنيع اللوحات الإعلانية والكلادينج"
+            />
+            <div className="story-badge">
+              <b>دقة تصنيع</b>
+              <span>بتقنيات الليزر وCNC</span>
+            </div>
+          </div>
+
+          <div className="story-copy">
+            <span className="eyebrow eyebrow-gold">قوتنا التصنيعية</span>
+            <h2>لا نعتمد على الوسطاء،<br />نمتلك <em>خطوط الإنتاج كاملة.</em></h2>
+            <p>
+              من مصانعنا المجهزة في الرياض، نتحكم في كل مرحلة من مراحل تصنيع واجهتك الإعلانية. نختار أجود سبائك الألومنيوم، وصفائح الأكريليك المقاومة للأشعة فوق البنفسجية، وشبكات الإنارة الكورية لضمان أداء يدوم لسنوات طويلة دون بهتان أو تلف.
+            </p>
+
+            <div className="factory-specs-grid my-6">
+              <div className="spec-item">
+                <CheckCircle2 size={16} className="text-gold" />
+                <span>قص وثني ليزر دقيق بدون نتوءات</span>
+              </div>
+              <div className="spec-item">
+                <CheckCircle2 size={16} className="text-gold" />
+                <span>دهان حراري كهروساكن ثابت لا يتقشر</span>
+              </div>
+              <div className="spec-item">
+                <CheckCircle2 size={16} className="text-gold" />
+                <span>عزل مائي متكامل IP67 للإنارة والمحولات</span>
+              </div>
+              <div className="spec-item">
+                <CheckCircle2 size={16} className="text-gold" />
+                <span>فريق تركيب ميداني مجهز بروافع وسقالات أمان</span>
+              </div>
+            </div>
+
+            <Link href="/about" className="button button-gold mt-2">
+              <span>تعرف على مصنعنا وإمكانياتنا</span>
+              <ArrowLeft size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Showcase */}
+      <section className="section section-white">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <span className="eyebrow"><i /> سابقة أعمال حديثة</span>
+              <h2>أعمال نفخر بها،<br /><em>تتحدث عن جودتنا.</em></h2>
+            </div>
+            <Link href="/portfolio" className="text-link">
+              استعراض كافة الأعمال والمشاريع <ArrowLeft size={16} />
+            </Link>
+          </div>
+
+          <div className="portfolio-grid-modern">
+            {featured.map((item) => (
+              <Link href="/portfolio" className="modern-project-card group" key={item.id}>
+                <div className="card-image-box">
+                  <CoverImage src={item.imageUrl} alt={item.title} />
+                  <div className="card-hover-overlay">
+                    <span className="hover-view-btn">
+                      <span>مشاهدة تفاصيل المشروع</span>
+                      <ArrowLeft size={15} />
+                    </span>
+                  </div>
+                </div>
+                <div className="card-info-box">
+                  <span className="card-category-tag">{item.category}</span>
+                  <h3 className="card-title">{item.title}</h3>
+                  <p className="card-desc">{item.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="section section-tint">
+        <div className="container">
+          <div className="section-heading centered-heading">
+            <div>
+              <span className="eyebrow">آراء شركاء النجاح</span>
+              <h2>ثقة عملائنا هي <em>أكبر إنجازاتنا</em></h2>
+            </div>
+          </div>
+
+          <div className="reviews-grid">
+            {clientReviews.map((review, i) => (
+              <div className="review-card" key={i}>
+                <div className="review-stars flex gap-1 mb-3">
+                  {Array.from({ length: review.rating }).map((_, rIdx) => (
+                    <Star key={rIdx} size={16} className="fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <p className="review-text">«{review.text}»</p>
+                <div className="review-author mt-4 pt-3 border-t border-gray-100">
+                  <b>{review.name}</b>
+                  <small className="block text-gray-500">{review.company}</small>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section section-white">
+        <div className="container max-w-4xl">
+          <div className="section-heading centered-heading">
+            <div>
+              <span className="eyebrow">الأسئلة الشائعة</span>
+              <h2>كل ما ترغب بمعرفته <em>عن خدماتنا وإجراءات العمل</em></h2>
+            </div>
+          </div>
+
+          <div className="faq-list">
+            {faqs.map((faq, idx) => (
+              <details className="faq-accordion-item" key={idx}>
+                <summary className="faq-question">
+                  <span>{faq.q}</span>
+                  <span className="faq-toggle-icon" aria-hidden="true">+</span>
+                </summary>
+                <div className="faq-answer">
+                  <p>{faq.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Articles */}
+      <section className="section section-tint">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <span className="eyebrow">أفكار وخبرات</span>
+              <h2>من مدونتنا الإعلانية،<br /><em>إرشادات تفيدك في مشروعك.</em></h2>
+            </div>
+            <Link href="/blog" className="text-link">
+              كل المقالات <ArrowLeft size={16} />
+            </Link>
+          </div>
+
+          <div className="post-grid">
+            {posts.slice(0, 3).map((post) => (
+              <Link href={"/blog/" + post.slug} className="post-card group" key={post.id}>
+                <div className="overflow-hidden rounded-sm">
+                  <CoverImage src={post.imageUrl} alt={post.title} />
+                </div>
+                <span className="post-date">{formatDate(post.publishedAt || post.createdAt)}</span>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <span className="text-link group-hover:text-gold transition-colors">
+                  اقرأ المقال بالكامل <ArrowLeft size={15} />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Conversion Final Band */}
+      <section className="cta-band">
+        <div className="container cta-content">
+          <div>
+            <span className="eyebrow eyebrow-gold">جاهز للانطلاق؟</span>
+            <h2>لديك مشروع أو واجهة جديدة؟<br /><em>دعنا نحولها إلى علامة فارقة.</em></h2>
+            <p className="text-white/80 max-w-lg mt-2 text-sm">
+              اتصل بنا أو تواصل مباشرة عبر واتساب للحصول على استشارة هندسية ودراسة تسعيرية مجانية لمشروعك.
+            </p>
+          </div>
+          <div className="cta-actions flex flex-wrap gap-3">
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="button button-gold">
+              <MessageCircle size={18} />
+              <span>محادثة واتساب مباشرة</span>
+            </a>
+            <Link href="/contact" className="button button-outline !border-white !text-white hover:!bg-white hover:!text-navy">
+              <span>طلب عرض سعر رسمي</span>
+              <ArrowLeft size={17} />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }

@@ -53,3 +53,31 @@ model Post {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
+
+model SiteSettings {
+  id                  String   @id @default("global-settings")
+  brandName           String   @default("حلول بصير للدعاية والإعلان")
+  brandShortName      String   @default("حلول بصير")
+  tagline             String   @default("من الفكرة إلى التنفيذ، نصنع حضورًا بصريًا يُميز علامتك ويترك أثرًا راسخًا")
+  logoUrl             String   @default("")
+  primaryColor        String   @default("#0A2540")
+  secondaryColor      String   @default("#E5A812")
+  accentColor         String   @default("#D4AF37")
+  fontFamily          String   @default("Cairo")
+  phone               String   @default("+966 50 123 4567")
+  whatsapp            String   @default("966501234567")
+  email               String   @default("contact@halol-basrya.com")
+  address             String   @default("المملكة العربية السعودية، الرياض، حي الملز")
+  workingHours        String   @default("السبت - الخميس: 9:00 ص - 10:00 م")
+  commercialRecord    String   @default("سجل تجاري معتمد: 1010894521")
+  announcementText    String   @default("✦ احصل على معاينة وتصميم استرشادي مجاني لمشروعك الإعلاني الجديد — تواصل معنا اليوم")
+  announcementEnabled Boolean  @default(true)
+  socialTwitter       String   @default("https://x.com")
+  socialInstagram     String   @default("https://instagram.com")
+  socialTiktok        String   @default("https://tiktok.com")
+  socialLinkedin      String   @default("https://linkedin.com")
+  seoTitle            String   @default("حلول بصير | دعاية وإعلان وطباعة وتجهيز واجهات")
+  seoDescription      String   @default("حلول بصرية متكاملة: لوحات حروف بارزة، واجهات كلادينج، طباعة رقمية وأوفست، دروع تكريمية وهدايا دعائية بأعلى مقاييس الجودة في المملكة العربية السعودية.")
+  seoKeywords         String   @default("دعاية وإعلان, لوحات حروف بارزة, واجهات كلادينج, طباعة ديجيتال, دروع تكريمية, هدايا دعائية, الرياض")
+  updatedAt           DateTime @updatedAt
+}
