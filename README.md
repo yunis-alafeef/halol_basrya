@@ -13,7 +13,7 @@
 ## التشغيل محليًا
 
 1. ثبّت Node.js 20 أو أحدث وPostgreSQL.
-2. انسخ .env.example إلى .env واضبط DATABASE_URL وSESSION_SECRET عشوائيًا بطول 32 محرفًا على الأقل.
+2. انسخ .env.example إلى .env واضبط DATABASE_URL وSESSION_SECRET عشوائيًا بطول 32 محرفًا على الأقل؛ يمكنك توليد السر عبر `openssl rand -base64 32`.
 3. نفّذ npm install، ثم npx prisma generate، ثم npx prisma migrate deploy، ثم npm run db:seed.
 4. أنشئ أول مدير: عيّن ADMIN_USERNAME وADMIN_PASSWORD (12 محرفًا على الأقل) في بيئة آمنة وشغّل npm run admin:create. لا تضع كلمة المرور في المستودع.
 5. شغّل npm run dev وافتح /admin/login.
