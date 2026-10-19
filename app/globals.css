@@ -2704,7 +2704,8 @@ button, a {
 
 /* Final mobile layout pass: keep every section readable at phone widths. */
 @media (max-width: 768px) {
-  html, body { max-width: 100%; overflow-x: hidden; }
+ html, body { max-width: 100%; overflow-x: hidden; }
+
   .container { width: calc(100% - 32px); max-width: none; }
   .top-announcement-bar, .top-contact-strip { overflow: hidden; }
   .announcement-inner, .contact-strip-inner { min-width: 0; }
@@ -3381,3 +3382,37 @@ p { margin: 0; }
     scroll-behavior: auto !important;
   }
 }
+
+@media (max-width: 768px) {
+  .section { padding: 52px 0; }
+  .section-heading { gap: 12px; margin-bottom: 26px; }
+  .section-heading h2, .centered-heading h2 { font-size: clamp(24px, 7vw, 32px); line-height: 1.35; }
+  .section-heading > p { font-size: 13px; line-height: 1.85; }
+  .service-card-expanded, .value-card, .cap-card { min-width: 0; padding: 18px; border-radius: 18px; }
+  .service-card-expanded h2, .value-card h3, .cap-card h3 { font-size: 17px; line-height: 1.55; overflow-wrap: anywhere; }
+  .service-card-expanded p, .value-card p, .cap-card p { font-size: 13px; line-height: 1.9; overflow-wrap: anywhere; }
+  .service-card-footer { align-items: stretch; flex-direction: column; gap: 12px; }
+  .service-card-footer .text-link, .service-card-footer .button { width: 100%; justify-content: center; }
+  .values-grid, .capabilities-grid { grid-template-columns: 1fr; gap: 14px; }
+  .value-card, .cap-card { text-align: right; }
+  .about-stats-grid { gap: 10px; }
+  .about-stat-card { padding: 15px 12px; min-width: 0; }
+  .about-stat-card span { font-size: 12px; line-height: 1.65; }
+  .footer-grid-luxury { grid-template-columns: 1fr; gap: 28px; }
+  .footer-col { min-width: 0; }
+  .footer-links-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .footer-links-list li { min-width: 0; }
+  .footer-links-list a { display: flex; align-items: center; min-height: 42px; padding: 8px 10px; border: 1px solid rgba(255,255,255,.09); border-radius: 10px; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+  .footer-heading { margin-bottom: 12px; font-size: 14px; }
+  .footer-contact-line { min-width: 0; align-items: flex-start; }
+  .footer-contact-line span { overflow-wrap: anywhere; line-height: 1.7; }
+  .footer-bottom-luxury { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-bottom-links { flex-wrap: wrap; justify-content: center; }
+}
+
+@media (max-width: 380px) {
+  .footer-links-list { grid-template-columns: 1fr; }
+  .container { width: calc(100% - 24px); }
+  .service-card-expanded, .value-card, .cap-card { padding: 15px; }
+}
+
