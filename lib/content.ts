@@ -16,6 +16,10 @@ export async function getPosts(publishedOnly = true): Promise<PostItem[]> {
   });
 }
 
+export async function getPostBySlug(slug: string): Promise<PostItem | null> {
+  return db.post.findFirst({ where: { slug } });
+}
+
 export function formatDate(date: Date | null | undefined): string {
   if (!date) return "قريبًا";
   const d = typeof date === "string" ? new Date(date) : date;

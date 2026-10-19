@@ -127,7 +127,7 @@ export function Header({ settings }: { settings: SiteSettings }) {
 
             <button
               type="button"
-              className="mobile-menu-trigger sm:hidden"
+              className="mobile-menu-trigger"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "إغلاق القائمة" : "فتح القائمة"}
               aria-expanded={mobileOpen}
@@ -207,6 +207,7 @@ export function Header({ settings }: { settings: SiteSettings }) {
                   <p className="mb-1">{settings.phone}</p>
                   <p>{settings.workingHours}</p>
                 </div>
+              </div>
             </div>
           </div>
         )}
