@@ -10,27 +10,27 @@ export function Footer({ settings }: { settings: SiteSettings }) {
 
   return (
     <footer className="site-footer">
-      <div className="container footer-grid-modern">
+      <div className="container footer-grid-luxury">
         {/* Brand info */}
         <div className="footer-col brand-col">
           <Logo
-            light
             brandName={settings.brandName}
             tagline={settings.tagline}
             logoUrl={settings.logoUrl}
+            className="footer-logo"
           />
-          <p className="footer-bio mt-4">
+          <p className="footer-bio">
             {settings.tagline || "نحول الأفكار إلى واقع بصري يُميز علامتك التجارية، من التصميم الهندسي المتقن حتى التصنيع والتركيب بأعلى معايير الجودة والضمان."}
           </p>
 
           {settings.commercialRecord && (
-            <div className="footer-badge mt-4">
+            <div className="footer-badge">
               <span>{settings.commercialRecord}</span>
             </div>
           )}
 
           {/* Social media icons */}
-          <div className="footer-social-links mt-4">
+          <div className="footer-social-links">
             {settings.socialTwitter && (
               <a href={settings.socialTwitter} target="_blank" rel="noopener noreferrer" aria-label="منصة إكس">
                 <span>𝕏</span>
@@ -109,7 +109,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
         </div>
       </div>
 
-      <div className="container footer-bottom-modern">
+      <div className="container footer-bottom-luxury">
         <div className="footer-copy">
           © {currentYear} <b>{settings.brandName}</b>. جميع الحقوق محفوظة ومسجلة في المملكة العربية السعودية.
         </div>
