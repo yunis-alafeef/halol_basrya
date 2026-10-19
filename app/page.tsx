@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   ArrowLeft,
+  ArrowRight,
   Award,
   BadgeCheck,
   CheckCircle2,
@@ -78,72 +79,74 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="hero">
-        <div className="container hero-grid">
-          <div className="hero-copy">
+      <section className="section section-dark hero-luxury" aria-label="الرئيسية">
+        <div className="container hero-luxury-grid">
+          <div className="hero-luxury-copy">
             <div className="hero-kicker">
-              <span>{settings.brandName} — صُنّاع الحضور الإعلاني والواجهات الفاخرة</span>
+              {settings.brandName} — صُنّاع الحضور الإعلاني والواجهات الفاخرة
             </div>
 
             <h1>
               حضور علامتك يبدأ<br />
-              من <em>واجهة تصنع الفارق</em><br />
+              <em>من واجهة تصنع الفارق</em><br />
               وتترك أثرًا راسخًا.
             </h1>
 
             <p className="hero-lead">
-              {settings.tagline || "نصمم وننفذ هويتك على أرض الواقع بأحدث ماكينات الليزر وتقنيات الكلادينج والحروف البارزة ثلاثية الأبعاد، من الرفع المساحي وحتى التركيب بالضمان."}
+              نصمم وننفذ هويتك على أرض الواقع بأحدث ماكينات الليزر وتقنيات
+              الكلادينج والحروف البارزة ثلاثية الأبعاد، بمواصفات عالمية وضمان
+              معتمد.
             </p>
 
             <div className="hero-actions">
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="button button-gold">
-                <MessageCircle size={18} />
-                <span>طلب معاينة وتسعير فوري</span>
-              </a>
-              <Link href="#quote-calculator" className="button button-outline">
-                <Zap size={16} />
-                <span>احسب التكلفة بضغطة زر</span>
+              <Link href="/contact" className="button button-primary button-lg">
+                <span>اطلب عرض سعر</span>
+                <ArrowRight size={17} />
               </Link>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button button-outline button-lg"
+              >
+                <MessageCircle size={17} />
+                <span>محادثة واتساب مباشرة</span>
+              </a>
             </div>
 
-            <div className="hero-proof-bar">
-              <div className="proof-box">
-                <div className="proof-icon-wrap"><ShieldCheck size={20} className="text-gold" /></div>
-                <div>
-                  <b>ضمان حتى 5 سنوات</b>
-                  <span>محولات وإنارة كورية أصلية</span>
-                </div>
+            <div className="hero-proof">
+              <div className="proof-item">
+                <b>+500</b>
+                <span>مشروع منفذ بنجاح</span>
               </div>
               <div className="proof-divider" />
-              <div className="proof-box">
-                <div className="proof-icon-wrap"><CheckCircle2 size={20} className="text-gold" /></div>
-                <div>
-                  <b>معاينة مجانية 100%</b>
-                  <span>رفع مساحي وتصميم 3D</span>
-                </div>
+              <div className="proof-item">
+                <b>حتى 5 سنوات</b>
+                <span>ضمان معتمد على الإنارة والتثبيت</span>
               </div>
               <div className="proof-divider" />
-              <div className="proof-box">
-                <div className="proof-icon-wrap"><Clock size={20} className="text-gold" /></div>
-                <div>
-                  <b>سرعة في التنفيذ</b>
-                  <span>التزام صارم بمواعيد التسليم</span>
-                </div>
+              <div className="proof-item">
+                <b>مجاني</b>
+                <span>معاينة وتصميم استرشادي أولي</span>
               </div>
             </div>
           </div>
 
-          <div className="hero-visual">
-            <CoverImage
-              src="/images/hero_commercial_signage.jpg"
-              alt="واجهة تجارية فاخرة بحروف بارزة وإنارة ليد متناسقة"
-              priority
-            />
-            <div className="hero-floating-badge">
-              <Sparkles size={18} className="text-navy" />
-              <div>
-                <b>+500 مشروع منجز</b>
-                <small>بمختلف مدن المملكة</small>
+          <div className="hero-luxury-visual">
+            <div className="hero-image-wrap">
+              <CoverImage
+                src="https://images.unsplash.com/photo-1562647583491-06789fcf9a58?auto=format&fit=crop&w=1400&q=85"
+                alt="واجهة تجارية فاخرة بحروف بارزة وإنارة ليد متناسقة ليلاً"
+                priority
+                sizes="(max-width: 900px) 100vw, 60vw"
+              />
+              <div className="hero-image-overlay" />
+              <div className="hero-floating-badge">
+                <Sparkles size={18} className="text-gold" />
+                <div>
+                  <b>+500 مشروع منجز</b>
+                  <small>بمختلف مدن المملكة</small>
+                </div>
               </div>
             </div>
             <div className="hero-caption">
@@ -152,7 +155,6 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
-        <div className="hero-bottom-line" />
       </section>
 
       {/* Services Showcase */}
