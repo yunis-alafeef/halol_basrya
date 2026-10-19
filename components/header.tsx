@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, Clock, MessageCircle, Menu, X, ArrowRight, Sparkles } from "lucide-react";
+import { Phone, Clock, MessageCircle, Menu, X, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/logo";
 import type { SiteSettings } from "@/lib/settings";
 
@@ -50,57 +50,6 @@ export function Header({ settings }: { settings: SiteSettings }) {
 
   return (
     <>
-      {/* Top info & announcement bar */}
-      {settings.announcementEnabled && settings.announcementText && (
-        <div className="top-announcement-bar">
-          <div className="container announcement-inner">
-            <span className="announcement-badge">
-              <Sparkles size={13} className="text-gold" /> جديد
-            </span>
-            <p className="announcement-text">{settings.announcementText}</p>
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="announcement-link"
-            >
-              استشرنا الآن عبر واتساب <ArrowRight size={14} />
-            </a>
-          </div>
-        </div>
-      )}
-
-      {/* Secondary Quick Contact Strip */}
-      <div className="top-contact-strip">
-        <div className="container contact-strip-inner">
-          <div className="strip-group">
-            <a href={`tel:${settings.phone}`} className="strip-item">
-              <Phone size={12} className="strip-icon" />
-              <span>{settings.phone}</span>
-            </a>
-            <span className="strip-divider hidden-sm" aria-hidden="true">|</span>
-            <span className="strip-item hidden-sm">
-              <Clock size={12} className="strip-icon" />
-              <span>{settings.workingHours}</span>
-            </span>
-          </div>
-          <div className="strip-group">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="strip-whatsapp"
-            >
-              <MessageCircle size={13} />
-              <span>تواصل عبر واتساب</span>
-            </a>
-            {settings.commercialRecord && (
-              <span className="strip-cr hidden-sm">{settings.commercialRecord}</span>
-            )}
-          </div>
-        </div>
-      </div>
-
       {/* Main Sticky Header */}
       <header className={`site-header sticky top-0 z-50 ${scrolled ? "scrolled shadow-sm" : ""}`}>
         <div className="container nav-wrap">
@@ -227,6 +176,27 @@ export function Header({ settings }: { settings: SiteSettings }) {
           </div>
         )}
       </header>
+
+      {/* Contact details sit below the navigation on every screen size. */}
+      <div className="top-contact-strip">
+        <div className="container contact-strip-inner">
+          <div className="strip-group">
+            <a href={`tel:${settings.phone}`} className="strip-item">
+              <Phone size={12} className="strip-icon" />
+              <span>{settings.phone}</span>
+            </a>
+            <span className="strip-divider hidden-sm" aria-hidden="true">|</span>
+            <span className="strip-item hidden-sm">
+              <Clock size={12} className="strip-icon" />
+              <span>{settings.workingHours}</span>
+            </span>
+          </div>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="strip-whatsapp">
+            <MessageCircle size={13} />
+            <span>تواصل عبر واتساب</span>
+          </a>
+        </div>
+      </div>
     </>
   );
 }
