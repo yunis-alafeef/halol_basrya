@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageCircle, Instagram, Linkedin, Music2 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import type { SiteSettings } from "@/lib/settings";
 
@@ -38,17 +38,17 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             )}
             {settings.socialInstagram && (
               <a href={settings.socialInstagram} target="_blank" rel="noopener noreferrer" aria-label="انستغرام">
-                <span>📸</span>
+                <Instagram size={16} aria-hidden="true" />
               </a>
             )}
             {settings.socialTiktok && (
               <a href={settings.socialTiktok} target="_blank" rel="noopener noreferrer" aria-label="تيك توك">
-                <span>🎵</span>
+                <Music2 size={16} aria-hidden="true" />
               </a>
             )}
             {settings.socialLinkedin && (
               <a href={settings.socialLinkedin} target="_blank" rel="noopener noreferrer" aria-label="لينكد إن">
-                <span>in</span>
+                <Linkedin size={16} aria-hidden="true" />
               </a>
             )}
           </div>
