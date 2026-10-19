@@ -121,20 +121,19 @@ if (!globalStore.__mock_posts) {
 }
 
 if (!globalStore.__mock_users) {
-  const adminPass = process.env.ADMIN_PASSWORD || "AdminPassword123!";
-  const adminUser = process.env.ADMIN_USERNAME || "admin";
-  const passwordHash = bcrypt.hashSync(adminPass, 10);
-  globalStore.__mock_users = [
-    {
-      id: "user-admin-default",
-      username: adminUser,
-      name: "مدير الموقع",
-      passwordHash,
-      role: "admin",
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }
-  ];
+  const adminPass = process.env.ADMIN_PASSWORD;
+  const adminUser = process.env.ADMIN_USERNAME;
+  globalStore.__mock_users = adminPass && adminUser
+    ? [{
+        id: "user-admin-default",
+        username: adminUser,
+        name: "مدير الموقع",
+        passwordHash: bcrypt.hashSync(adminPass, 10),
+        role: "admin",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }]
+    : [];
 }
 
 function matchesWhere<T extends Record<string, any>>(item: T, where?: Record<string, any>): boolean {
@@ -269,9 +268,12 @@ if (process.env.DATABASE_URL && !process.env.DATABASE_URL.includes("localhost/mo
       }
     });
   } catch (err) {
+    if (process.env.NODE_ENV === "production") throw err;
     console.warn("[AI Studio] Prisma initialization failed, using in-memory mock store:", err);
     activeDb = inMemoryDb;
   }
+} else if (process.env.NODE_ENV === "production") {
+  throw new Error("DATABASE_URL must be set to a persistent PostgreSQL database in production.");
 }
 
 export const db: typeof inMemoryDb = activeDb;
