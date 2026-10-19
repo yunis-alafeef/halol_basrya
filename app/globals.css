@@ -2702,6 +2702,63 @@ button, a {
 @keyframes drawerSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
 @keyframes drawerFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+/* Final mobile layout pass: keep every section readable at phone widths. */
+@media (max-width: 768px) {
+  html, body { max-width: 100%; overflow-x: hidden; }
+  .container { width: calc(100% - 32px); max-width: none; }
+  .top-announcement-bar, .top-contact-strip { overflow: hidden; }
+  .announcement-inner, .contact-strip-inner { min-width: 0; }
+  .announcement-text, .strip-item span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .site-header { height: 68px; }
+  .nav-wrap { min-height: 68px; }
+  .brand { min-width: 0; flex: 1; }
+  .brand-title { max-width: 145px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .brand-tagline { max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .mobile-drawer-overlay { position: fixed; inset: 0; width: 100vw; height: 100dvh; }
+  .mobile-drawer-content { width: min(86vw, 330px); height: 100dvh; max-height: 100dvh; border-radius: 20px 0 0 20px; }
+  .mobile-drawer-header { flex: 0 0 auto; padding: 18px 16px 14px; gap: 10px; }
+  .mobile-drawer-header .brand-title { max-width: 145px; }
+  .mobile-drawer-links { min-height: 0; padding: 14px 12px; gap: 5px; }
+  .mobile-nav-link { display: flex; align-items: center; justify-content: space-between; min-height: 46px; padding: 11px 13px; font-size: 13px; line-height: 1.5; }
+  .mobile-drawer-footer { flex: 0 0 auto; padding: 14px 16px 18px; }
+  .mobile-drawer-footer .button { min-height: 45px; padding: 10px 12px; font-size: 12px; }
+  .drawer-contact-info { margin-top: 12px; font-size: 11px; line-height: 1.7; }
+  .hero-luxury, .hero { padding-block: 32px 38px; }
+  .hero-luxury-grid, .hero-grid, .story-grid { gap: 24px; }
+  .hero-luxury-copy h1, .hero h1, .page-hero h1 { margin-bottom: 14px; font-size: clamp(28px, 8.8vw, 36px); line-height: 1.38; overflow-wrap: anywhere; }
+  .hero-lead, .page-hero p { font-size: 13px; line-height: 1.85; }
+  .hero-actions, .cta-actions { gap: 8px; }
+  .hero-actions .button, .cta-actions .button { min-height: 46px; padding: 11px 14px; font-size: 12px; }
+  .hero-luxury-visual, .hero-visual { height: clamp(230px, 68vw, 290px); }
+  .hero-caption { font-size: 9px; }
+  .section { padding: 40px 0; }
+  .section-heading { margin-bottom: 22px; gap: 8px; }
+  .section-heading h2 { font-size: clamp(23px, 7vw, 28px); line-height: 1.45; }
+  .section-heading > p { max-width: 100%; font-size: 12px; line-height: 1.8; }
+  .eyebrow, .hero-kicker { font-size: 10px; letter-spacing: .08em; }
+  .service-card, .portfolio-card, .review-card, .post-card, .quote-calculator-card, .contact-card { min-width: 0; }
+  .service-card h3, .portfolio-card h3, .post-card h3 { font-size: 17px; line-height: 1.55; }
+  .service-card p, .portfolio-card p, .review-card p, .post-card p { font-size: 12px; line-height: 1.8; }
+  .service-grid, .portfolio-grid-modern, .reviews-grid, .post-grid, .about-stats-grid, .capabilities-grid, .process-grid { gap: 12px; }
+  .card-content { padding: 16px; }
+  .quote-calculator-card { padding: 18px 14px; }
+  .form-label, label { font-size: 12px; }
+  input, select, textarea { max-width: 100%; font-size: 13px; }
+  textarea { min-height: 100px; }
+  .table-wrap { max-width: 100%; overflow-x: auto; }
+  .cta-band { padding: 36px 0; }
+  .footer-grid-modern, .footer-grid-luxury { gap: 24px; }
+}
+
+@media (max-width: 380px) {
+  .container { width: calc(100% - 24px); }
+  .brand-title { max-width: 120px; font-size: 14px; }
+  .brand-tagline { max-width: 125px; font-size: 8px; }
+  .mobile-drawer-content { width: 90vw; }
+  .hero-luxury-copy h1, .hero h1, .page-hero h1 { font-size: 27px; }
+  .section-heading h2 { font-size: 22px; }
+}
+
 /* Keep the dark hero readable after the shared heading rules. */
 .hero-luxury h1 { color: #FFFFFF; }
 .hero-luxury h1 em { color: var(--si-color-accent); -webkit-text-fill-color: var(--si-color-accent); }
