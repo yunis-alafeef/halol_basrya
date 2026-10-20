@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { SchemaJsonLd } from "@/components/schema-json-ld";
+import { MobileStickyBar } from "@/components/mobile-sticky-bar";
 import { getSiteSettings } from "@/lib/settings";
 
 const cairo = Cairo({
@@ -70,11 +71,12 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           `
         }} />
       </head>
-      <body className="font-cairo antialiased min-h-screen flex flex-col justify-between">
+      <body className="font-cairo antialiased min-h-screen flex flex-col justify-between pb-16 md:pb-0">
         <SchemaJsonLd settings={settings} />
         <Header settings={settings} />
         <main className="flex-1">{children}</main>
         <Footer settings={settings} />
+        <MobileStickyBar settings={settings} />
       </body>
     </html>
   );

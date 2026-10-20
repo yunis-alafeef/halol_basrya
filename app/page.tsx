@@ -5,15 +5,12 @@ import {
   Award,
   BadgeCheck,
   CheckCircle2,
-  Clock,
   Layers3,
   MessageCircle,
   Printer,
-  ShieldCheck,
   Sparkles,
   Star,
-  Trophy,
-  Zap
+  Trophy
 } from "lucide-react";
 import { CoverImage } from "@/components/cover-image";
 import { FastQuoteEstimator } from "@/components/fast-quote-estimator";
@@ -135,8 +132,8 @@ export default async function HomePage() {
           <div className="hero-luxury-visual">
             <div className="hero-image-wrap">
               <CoverImage
-                src="https://images.unsplash.com/photo-1562647583491-06789fcf9a58?auto=format&fit=crop&w=1400&q=85"
-                alt="واجهة تجارية فاخرة بحروف بارزة وإنارة ليد متناسقة ليلاً"
+                src="/images/hero_commercial_signage.jpg"
+                alt="واجهة تجارية فاخرة بحروف بارزة ثلاثية الأبعاد وإنارة ليد كورية"
                 priority
                 sizes="(max-width: 900px) 100vw, 60vw"
               />

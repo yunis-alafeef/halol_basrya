@@ -39,7 +39,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   const cleanWhatsapp = (settings.whatsapp || "").replace(/[^0-9]/g, "");
   const whatsappUrl = `https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(`مرحبًا، أود طلب استشارة وعرض سعر لخدمة: ${service.title}`)}`;
 
-  const otherServices = allServices.filter((s) => s.slug !== slug).slice(0, 4);
+  const otherServices = allServices.filter((s: { slug: string }) => s.slug !== slug).slice(0, 4);
 
   return (
     <>
