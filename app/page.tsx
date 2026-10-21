@@ -165,7 +165,7 @@ export default async function HomePage() {
             <p>من اللوحة المضيئة الخارجية إلى الهدايا التذكارية والمطبوعات الإعلانية، نصنع لعلامتك حضورًا متناسقًا ومؤثرًا.</p>
           </div>
 
-          <div className="service-grid">
+          <div className="service-grid reveal-on-scroll">
             {services.slice(0, 6).map((service, index) => {
               const Icon = icons[index % icons.length];
               return (
@@ -260,7 +260,7 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div className="portfolio-grid-modern">
+          <div className="portfolio-grid-modern reveal-on-scroll">
             {featured.map((item) => (
               <Link href="/portfolio" className="modern-project-card group" key={item.id}>
                 <div className="card-image-box">
@@ -293,7 +293,7 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="reviews-grid">
+          <div className="reviews-grid reveal-on-scroll">
             {clientReviews.map((review, i) => (
               <div className="review-card" key={i}>
                 <div className="review-stars flex gap-1 mb-3">
@@ -351,7 +351,7 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div className="post-grid">
+          <div className="post-grid reveal-on-scroll">
             {posts.slice(0, 3).map((post) => (
               <Link href={"/blog/" + post.slug} className="post-card group" key={post.id}>
                 <div className="overflow-hidden rounded-sm">
