@@ -12,21 +12,25 @@ const config: Config = {
         /* Primary: Deep Ink — luxury, trust, depth */
         ink: "#0B1426",
         /* Secondary: Warm Stone — calm, eye-friendly backgrounds */
-        stone: "#F4F1EA",
+        stone: "#F5F2EB",
         /* Accent: Burnished Gold — bold highlight, CTAs */
         gold: "#C59D5F",
         "gold-hover": "#B88A4B",
+        "gold-soft": "#F6EEDD",
+        "gold-light": "#E7CFA1",
+        "gold-ink": "#8A6220",
         /* Surfaces */
         surface: "#FFFFFF",
         "surface-alt": "#FAF9F6",
+        "surface-hover": "#F1F4F8",
         /* Borders */
-        border: "#E7E9EE",
-        "border-hover": "#D8DBE1",
-        /* Text */
-        text: "#121B2A",
-        "text-light": "#2A3442",
-        muted: "#6E7A8A",
-        "muted-light": "#9AA5B1",
+        border: "#E2E6EC",
+        "border-hover": "#C9D0DA",
+        /* Text — WCAG AA on light surfaces */
+        text: "#0F172A",
+        "text-light": "#26344A",
+        muted: "#4A5566",
+        "muted-light": "#64707F",
         /* Semantic */
         success: "#0E7C6B",
         error: "#B3404A",
@@ -67,6 +71,18 @@ const config: Config = {
       },
       fontFamily: {
         cairo: ["var(--font-cairo)", "Cairo", "sans-serif"],
+        tajawal: ["var(--font-tajawal)", "Tajawal", "Cairo", "sans-serif"],
+        sans: ["var(--font-cairo)", "Cairo", "Tajawal", "sans-serif"],
+      },
+      fontSize: {
+        /* Body text never drops below 16px (mobile-safe Arabic typography) */
+        base: ["17px", { lineHeight: "1.85" }],
+        sm: ["15px", { lineHeight: "1.75" }],
+        xs: ["13px", { lineHeight: "1.6" }],
+        lg: ["19px", { lineHeight: "1.8" }],
+      },
+      maxWidth: {
+        content: "1200px",
       },
     },
     plugins: [],

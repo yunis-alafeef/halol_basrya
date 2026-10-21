@@ -139,7 +139,7 @@ export function Header({ settings }: { settings: SiteSettings }) {
                       href={link.href}
                       className={`mobile-nav-link block px-4 py-3.5 text-text-light rounded-lg transition-colors ${
                         isActive
-                          ? "bg-surface-alt text-text font-medium"
+                          ? "bg-surface-alt text-text font-bold"
                           : "hover:bg-surface-hover hover:text-text"
                       }`}
                       onClick={() => setMobileOpen(false)}
