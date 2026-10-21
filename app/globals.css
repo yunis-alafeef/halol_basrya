@@ -11,23 +11,31 @@
   --si-color-primary: #0B1426;
   --si-color-primary-rgb: 11, 20, 38;
   /* Secondary: Warm Stone — calm, eye-friendly backgrounds */
-  --si-color-secondary: #F4F1EA;
-  --si-color-secondary-rgb: 244, 241, 234;
+  --si-color-secondary: #F5F2EB;
+  --si-color-secondary-rgb: 245, 242, 235;
   /* Accent: Burnished Gold — bold highlight, CTAs */
   --si-color-accent: #C59D5F;
   --si-color-accent-rgb: 197, 157, 95;
   --si-color-accent-hover: #B88A4B;
-  /* Text */
-  --si-color-text: #121B2A;
-  --si-color-text-light: #2A3442;
-  --si-color-muted: #6E7A8A;
-  --si-color-muted-light: #9AA5B1;
+  /* Accessible gold tones (text on light / dark surfaces) */
+  --si-color-accent-ink: #8A6220;
+  --si-color-accent-soft: #F6EEDD;
+  --si-color-accent-light: #E7CFA1;
+  /* Text — all pairs pass WCAG AA on the surfaces below */
+  --si-color-text: #0F172A;
+  --si-color-text-light: #26344A;
+  --si-color-muted: #4A5566;
+  --si-color-muted-light: #64707F;
+  /* Text on dark surfaces */
+  --si-color-text-inverse: #FFFFFF;
+  --si-color-inverse-muted: #CBD5E1;
   /* Surfaces */
   --si-color-surface: #FFFFFF;
   --si-color-surface-alt: #FAF9F6;
   /* Borders */
-  --si-color-border: #E7E9EE;
-  --si-color-border-hover: #D8DBE1;
+  --si-color-border: #E2E6EC;
+  --si-color-border-hover: #C9D0DA;
+  --si-color-border-dark: rgba(255, 255, 255, 0.14);
   /* Semantic */
   --si-color-success: #0E7C6B;
   --si-color-error: #B3404A;
