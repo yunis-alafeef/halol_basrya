@@ -24,34 +24,34 @@ export function MobileStickyBar({ settings }: MobileStickyBarProps) {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl bg-[#25D366]/15 text-[#25D366] hover:bg-[#25D366]/25 active:scale-95 transition-all"
+          className="mobile-bar-item flex flex-col items-center justify-center py-1.5 px-1 rounded-xl bg-[#25D366]/20 text-white hover:bg-[#25D366]/35 active:scale-95 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
         >
-          <MessageCircle size={19} className="text-[#25D366] mb-0.5" />
-          <span className="text-[11px] font-bold leading-tight">واتساب</span>
+          <MessageCircle size={20} className="text-[#25D366] mb-0.5" />
+          <span className="text-[12px] font-bold leading-tight">واتساب</span>
         </a>
 
         <a
           href={`tel:${settings.phone}`}
           className="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl bg-white/5 text-white hover:bg-white/10 active:scale-95 transition-all"
         >
-          <Phone size={19} className="text-gold mb-0.5" />
-          <span className="text-[11px] font-bold leading-tight">اتصال</span>
+          <Phone size={20} className="text-[#E7CFA1] mb-0.5" />
+          <span className="text-[12px] font-bold leading-tight">اتصال</span>
         </a>
 
         <Link
           href="/#quote-calculator"
-          className="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl bg-gold/20 text-gold hover:bg-gold/30 active:scale-95 transition-all"
+          className="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl bg-gold/20 text-white hover:bg-gold/30 active:scale-95 transition-all"
         >
-          <Calculator size={19} className="text-gold mb-0.5" />
-          <span className="text-[11px] font-bold leading-tight">حاسبة السعر</span>
+          <Calculator size={20} className="text-[#E7CFA1] mb-0.5" />
+          <span className="text-[12px] font-bold leading-tight">حاسبة السعر</span>
         </Link>
 
         <Link
           href="/portfolio"
-          className="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl bg-white/5 text-slate-300 hover:bg-white/10 active:scale-95 transition-all"
+          className="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl bg-white/5 text-white hover:bg-white/10 active:scale-95 transition-all"
         >
-          <ImageIcon size={19} className="text-slate-300 mb-0.5" />
-          <span className="text-[11px] font-semibold leading-tight">أعمالنا</span>
+          <ImageIcon size={20} className="text-[#E7CFA1] mb-0.5" />
+          <span className="text-[12px] font-semibold leading-tight">أعمالنا</span>
         </Link>
       </div>
     </aside>
