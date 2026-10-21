@@ -1,18 +1,28 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Cairo } from "next/font/google";
+import { Cairo, Tajawal } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { SchemaJsonLd } from "@/components/schema-json-ld";
 import { MobileStickyBar } from "@/components/mobile-sticky-bar";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { getSiteSettings } from "@/lib/settings";
 
+/* Body copy — Cairo (excellent Arabic legibility at 16–18px) */
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
   variable: "--font-cairo"
+});
+
+/* Display headings — Tajawal (geometric, high-end Arabic typography) */
+const tajawal = Tajawal({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-tajawal"
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -58,7 +68,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const settings = await getSiteSettings();
 
   return (
-    <html lang="ar" dir="rtl" className={cairo.variable}>
+    <html lang="ar" dir="rtl" className={`${cairo.variable} ${tajawal.variable}`}>
       <head>
         {/* Dynamic theme style injection from site settings */}
         <style id="dynamic-theme-vars" dangerouslySetInnerHTML={{
@@ -72,11 +82,13 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         }} />
       </head>
       <body className="font-cairo antialiased min-h-screen flex flex-col justify-between pb-16 md:pb-0">
+        <a href="#main-content" className="skip-to-content">تجاوز إلى المحتوى الرئيسي</a>
         <SchemaJsonLd settings={settings} />
         <Header settings={settings} />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer settings={settings} />
         <MobileStickyBar settings={settings} />
+        <ScrollReveal />
       </body>
     </html>
   );
